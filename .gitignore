@@ -7,6 +7,8 @@ data/
 logs
 *.log
 
+.LOCAL-DEVNOTES.md
+
 # Runtime data
 pids
 *.pid
