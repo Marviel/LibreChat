@@ -11,16 +11,21 @@ RUN apk --no-cache add curl && \
     # otherwise it will create a new one
     touch .env && \
     # Build deps in seperate 
-    npm ci
+    # OLD
+    #npm ci
+    npm i
 
 # React client build
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-RUN npm run frontend
+# OLD
+# RUN npm run frontend
 
 # Node API setup
 EXPOSE 3080
 ENV HOST=0.0.0.0
-CMD ["npm", "run", "backend"]
+# OLD
+# CMD ["npm", "run", "backend:dev"]
+CMD ["npm", "run", "backend:dev"]
 
 # Optional: for client with nginx routing
 # FROM nginx:stable-alpine AS nginx-client
