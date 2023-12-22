@@ -1,3 +1,22 @@
+# OpenChat UI 2.0
+
+## Getting Started
+> NOTE:  these instructions need work, but they should be enough to get you started
+
+- install Docker Desktop, and nodejs
+- Copy the `.env.example` file into `.env`, and change the .env file to include this line:
+  `OPENAI_REVERSE_PROXY=[OPENCHAT_SERVER_BASE_URL]/v1/chat/completions`
+- `npm i`
+- Run `npm run b:data-provider`, to build the data-provider lib
+- Run `docker-compose up`, to start the API
+- In another terminal:
+  - Run `npm run frontend:dev`, to start the frontend
+
+
+
+---------------
+
+
 <p align="center">
   <a href="https://docs.librechat.ai">
     <img src="docs/assets/LibreChat.svg" height="256">
