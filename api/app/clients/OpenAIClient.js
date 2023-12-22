@@ -165,6 +165,8 @@ class OpenAIClient extends BaseClient {
       this.modelOptions.stop = stopTokens;
     }
 
+    console.log('reverseProxy\n\n\n\n', reverseProxy);
+
     if (reverseProxy) {
       this.completionsUrl = reverseProxy;
       this.langchainProxy = extractBaseURL(reverseProxy);

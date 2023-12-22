@@ -1,5 +1,6 @@
 const express = require('express');
 const openAI = require('./openAI');
+const openChat = require('./openChat');
 const google = require('./google');
 const bingAI = require('./bingAI');
 const anthropic = require('./anthropic');
@@ -42,5 +43,6 @@ router.use(`/${EModelEndpoint.gptPlugins}`, gptPlugins);
 router.use(`/${EModelEndpoint.anthropic}`, anthropic);
 router.use(`/${EModelEndpoint.google}`, google);
 router.use(`/${EModelEndpoint.bingAI}`, bingAI);
+router.use(`/${EModelEndpoint.openchat}`, openChat);
 
 module.exports = router;
