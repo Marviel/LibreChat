@@ -22,6 +22,7 @@ const {
   ANTHROPIC_MODELS,
   GOOGLE_MODELS,
   PROXY,
+  OPENCHAT_MODELS,
 } = process.env ?? {};
 
 const fetchOpenAIModels = async (opts = { azure: false, plugins: false }, _models = []) => {
@@ -141,9 +142,19 @@ const getGoogleModels = () => {
   return models;
 };
 
+const getOpenChatModels = () => {
+  let models = defaultModels[EModelEndpoint.openchat];
+  if (OPENCHAT_MODELS) {
+    models = String(OPENCHAT_MODELS).split(',');
+  }
+
+  return models;
+};
+
 module.exports = {
   getOpenAIModels,
   getChatGPTBrowserModels,
   getAnthropicModels,
   getGoogleModels,
+  getOpenChatModels,
 };
