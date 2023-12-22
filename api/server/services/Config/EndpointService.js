@@ -27,6 +27,8 @@ module.exports = {
     useAzurePlugins,
     userProvidedOpenAI,
     googleKey,
+    // TODO: change this to being loaded in the same as the others.
+    [EModelEndpoint.openchat]: true,
     [EModelEndpoint.openAI]: isUserProvided(openAIApiKey),
     [EModelEndpoint.assistant]: isUserProvided(openAIApiKey),
     [EModelEndpoint.azureOpenAI]: isUserProvided(azureOpenAIApiKey),
