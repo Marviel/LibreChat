@@ -5,6 +5,7 @@ const {
   getGoogleModels,
   getAnthropicModels,
   getChatGPTBrowserModels,
+  getOpenChatModels,
 } = require('~/server/services/ModelService');
 
 const fitlerAssistantModels = (str) => {
@@ -18,8 +19,10 @@ async function loadDefaultModels() {
   const chatGPTBrowser = getChatGPTBrowserModels();
   const azureOpenAI = await getOpenAIModels({ azure: true });
   const gptPlugins = await getOpenAIModels({ azure: useAzurePlugins, plugins: true });
+  const openchat = await getOpenChatModels();
 
   return {
+    [EModelEndpoint.openchat]: openchat,
     [EModelEndpoint.openAI]: openAI,
     [EModelEndpoint.google]: google,
     [EModelEndpoint.anthropic]: anthropic,
