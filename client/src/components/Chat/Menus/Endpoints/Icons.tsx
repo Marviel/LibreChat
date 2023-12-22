@@ -1,16 +1,18 @@
 import { EModelEndpoint } from 'librechat-data-provider';
 import {
-  MinimalPlugin,
-  GPTIcon,
   AnthropicIcon,
   AzureMinimalIcon,
   BingAIMinimalIcon,
   GoogleMinimalIcon,
+  GPTIcon,
   LightningIcon,
+  MinimalPlugin,
 } from '~/components/svg';
+import OpenChatIcon from '~/components/svg/OpenChatIcon';
 import { cn } from '~/utils';
 
 export const icons = {
+  [EModelEndpoint.openchat]: OpenChatIcon,
   [EModelEndpoint.azureOpenAI]: AzureMinimalIcon,
   [EModelEndpoint.openAI]: GPTIcon,
   [EModelEndpoint.gptPlugins]: MinimalPlugin,

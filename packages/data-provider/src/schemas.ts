@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export enum EModelEndpoint {
+  openchat = 'openchat',
   azureOpenAI = 'azureOpenAI',
   openAI = 'openAI',
   bingAI = 'bingAI',
@@ -12,6 +13,7 @@ export enum EModelEndpoint {
 }
 
 export const defaultEndpoints: EModelEndpoint[] = [
+  EModelEndpoint.openchat,
   EModelEndpoint.openAI,
   EModelEndpoint.assistant,
   EModelEndpoint.azureOpenAI,
@@ -62,9 +64,11 @@ export const defaultModels = {
     'text-davinci-003',
     'gpt-4-0314',
   ],
+  [EModelEndpoint.openchat]: ['openchat/openchat-3.5-1210'],
 };
 
 export const alternateName = {
+  [EModelEndpoint.openchat]: 'OpenChat',
   [EModelEndpoint.openAI]: 'OpenAI',
   [EModelEndpoint.assistant]: 'Assistants',
   [EModelEndpoint.azureOpenAI]: 'Azure OpenAI',
@@ -117,6 +121,7 @@ export const endpointSettings = {
 const google = endpointSettings[EModelEndpoint.google];
 
 export const EndpointURLs: { [key in EModelEndpoint]: string } = {
+  [EModelEndpoint.openchat]: '/api/ask/openchat',
   [EModelEndpoint.azureOpenAI]: '/api/ask/azureOpenAI',
   [EModelEndpoint.openAI]: '/api/ask/openAI',
   [EModelEndpoint.bingAI]: '/api/ask/bingAI',
@@ -539,6 +544,8 @@ type EndpointSchema =
   | typeof assistantSchema;
 
 const endpointSchemas: Record<EModelEndpoint, EndpointSchema> = {
+  // TODO: custom schema
+  [EModelEndpoint.openchat]: openAISchema,
   [EModelEndpoint.openAI]: openAISchema,
   [EModelEndpoint.azureOpenAI]: openAISchema,
   [EModelEndpoint.google]: googleSchema,
@@ -606,6 +613,7 @@ export const getResponseSender = (endpointOption: TEndpointOption): string => {
 
   if (
     [
+      EModelEndpoint.openchat,
       EModelEndpoint.openAI,
       EModelEndpoint.azureOpenAI,
       EModelEndpoint.gptPlugins,
@@ -640,6 +648,10 @@ export const getResponseSender = (endpointOption: TEndpointOption): string => {
     }
 
     return 'PaLM2';
+  }
+
+  if (endpoint === EModelEndpoint.openchat) {
+    return 'OpenChat';
   }
 
   return '';
@@ -820,6 +832,8 @@ type CompactEndpointSchema =
   | typeof compactPluginsSchema;
 
 const compactEndpointSchemas: Record<string, CompactEndpointSchema> = {
+  // TODO custom schema
+  openchat: compactOpenAISchema,
   openAI: compactOpenAISchema,
   azureOpenAI: compactOpenAISchema,
   assistant: assistantSchema,
