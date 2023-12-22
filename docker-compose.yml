@@ -8,11 +8,12 @@ services:
     container_name: LibreChat
     ports:
       - 3080:3080
+      - 3090:3090
     depends_on:
       - mongodb
-    image: librechat
     build:
       context: .
+      dockerfile: Dockerfile
       target: node
     restart: always
     user: "${UID}:${GID}"
@@ -29,6 +30,8 @@ services:
       - /app/client/node_modules
       - /app/api/node_modules
       - ./api:/app/api
+      - ./client:/app/client
+      - ./packages/:/app/packages/
       - ./.env:/app/.env
       - ./.env.development:/app/.env.development
       - ./.env.production:/app/.env.production
@@ -41,6 +44,8 @@ services:
     volumes:
       - ./data-node:/data/db
     command: mongod --noauth
+    ports:
+      - 27017:27017
   meilisearch:
     container_name: chat-meilisearch
     image: getmeili/meilisearch:v1.5
