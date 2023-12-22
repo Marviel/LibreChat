@@ -1,16 +1,18 @@
 import { EModelEndpoint } from 'librechat-data-provider';
+import { IconProps } from '~/common';
 import {
-  Plugin,
-  GPTIcon,
   AnthropicIcon,
   AzureMinimalIcon,
-  PaLMIcon,
   CodeyIcon,
   GeminiIcon,
+  GPTIcon,
+  PaLMIcon,
+  Plugin,
 } from '~/components/svg';
 import { useAuthContext } from '~/hooks/AuthContext';
-import { IconProps } from '~/common';
 import { cn } from '~/utils';
+
+import OpenChatIcon from '../svg/OpenChatIcon';
 
 const Icon: React.FC<IconProps> = (props) => {
   const { size = 30, isCreatedByUser, button, model = '', endpoint, error, jailbreak } = props;
@@ -45,6 +47,11 @@ const Icon: React.FC<IconProps> = (props) => {
         icon: <AzureMinimalIcon size={size * 0.5555555555555556} />,
         bg: 'linear-gradient(0.375turn, #61bde2, #4389d0)',
         name: 'ChatGPT',
+      },
+      [EModelEndpoint.openchat]: {
+        icon: <OpenChatIcon size={size * 0.5} />,
+        bg: '#ababab',
+        name: 'OpenChat',
       },
       [EModelEndpoint.openAI]: {
         icon: <GPTIcon size={size * 0.5555555555555556} />,

@@ -1,13 +1,15 @@
-import { useRecoilState } from 'recoil';
 import type { ChangeEvent } from 'react';
-import { useChatContext } from '~/Providers';
+
+import { useRecoilState } from 'recoil';
 import { useRequiresKey } from '~/hooks';
-import AttachFile from './Files/AttachFile';
-import StopButton from './StopButton';
-import SendButton from './SendButton';
-import Images from './Files/Images';
-import Textarea from './Textarea';
+import { useChatContext } from '~/Providers';
 import store from '~/store';
+
+import AttachFile from './Files/AttachFile';
+import Images from './Files/Images';
+import SendButton from './SendButton';
+import StopButton from './StopButton';
+import Textarea from './Textarea';
 
 export default function ChatForm({ index = 0 }) {
   const [text, setText] = useRecoilState(store.textByIndex(index));

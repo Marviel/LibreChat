@@ -1,11 +1,14 @@
-import { alternateName } from 'librechat-data-provider';
-import { Content, Portal, Root } from '@radix-ui/react-popover';
-import { useGetEndpointsQuery } from 'librechat-data-provider/react-query';
 import type { FC } from 'react';
-import EndpointItems from './Endpoints/MenuItems';
+
+import { alternateName } from 'librechat-data-provider';
+import { useGetEndpointsQuery } from 'librechat-data-provider/react-query';
 import { useChatContext } from '~/Providers';
-import TitleButton from './UI/TitleButton';
 import { mapEndpoints } from '~/utils';
+
+import { Content, Portal, Root } from '@radix-ui/react-popover';
+
+import EndpointItems from './Endpoints/MenuItems';
+import TitleButton from './UI/TitleButton';
 
 const EndpointsMenu: FC = () => {
   const { data: endpoints = [] } = useGetEndpointsQuery({

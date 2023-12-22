@@ -1,13 +1,14 @@
-import { Plugin } from '~/components/Messages/Content';
-import MessageContent from './Content/MessageContent';
 import type { TMessageProps } from '~/common';
-import SiblingSwitch from './SiblingSwitch';
+import { Plugin } from '~/components/Messages/Content';
 import { useMessageHelpers } from '~/hooks';
+import { cn } from '~/utils';
+
+import MessageContent from './Content/MessageContent';
+import HoverButtons from './HoverButtons';
 // eslint-disable-next-line import/no-cycle
 import MultiMessage from './MultiMessage';
-import HoverButtons from './HoverButtons';
+import SiblingSwitch from './SiblingSwitch';
 import SubRow from './SubRow';
-import { cn } from '~/utils';
 
 export default function Message(props: TMessageProps) {
   const { message, siblingIdx, siblingCount, setSiblingIdx, currentEditId, setCurrentEditId } =
@@ -60,7 +61,9 @@ export default function Message(props: TMessageProps) {
               className={cn('relative flex w-full flex-col', isCreatedByUser ? '' : 'agent-turn')}
             >
               <div className="select-none font-semibold">
-                {isCreatedByUser ? 'You' : message.sender}
+                {/* {isCreatedByUser ? 'You' : message.sender} */}
+                {/* TODO: not hardcoded */}
+                {isCreatedByUser ? 'You' : 'OpenChat'}
               </div>
               <div className="flex-col gap-1 md:gap-3">
                 <div className="flex max-w-full flex-grow flex-col gap-0">
