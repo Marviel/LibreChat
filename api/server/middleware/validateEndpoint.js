@@ -8,6 +8,8 @@ function validateEndpoint(req, res, next) {
   }
 
   const pathEndpoint = req.baseUrl.split('/')[3];
+  console.log('pathEndpoint', pathEndpoint);
+  console.log('endpoint', endpoint);
 
   if (endpoint !== pathEndpoint) {
     return handleError(res, { text: 'Illegal request: Endpoint mismatch' });

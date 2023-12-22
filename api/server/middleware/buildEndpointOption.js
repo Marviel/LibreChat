@@ -6,6 +6,7 @@ const gptPlugins = require('~/server/services/Endpoints/gptPlugins');
 const { parseConvo, EModelEndpoint } = require('librechat-data-provider');
 
 const buildFunction = {
+  [EModelEndpoint.openchat]: openAI.buildOptions,
   [EModelEndpoint.openAI]: openAI.buildOptions,
   [EModelEndpoint.google]: google.buildOptions,
   [EModelEndpoint.azureOpenAI]: openAI.buildOptions,
